@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+    <h1 id="todo">TODO APP</h1>
+    <form method="post" action="/create-task">
+        <div id="desc-div">
+            <label for="desc">Description</label><br>
+            <input type="text" id="desc" name="desc" placeholder="what do u need to do" required><br>
+        </div>
+        <div id="lower-div">
+            <div id="drop-div">
+                <label for="category">Category</label><br>
+                <select name="category" id="category">
+                    <option value="personal">Personal</option>
+                    <option value="work">Work</option>
+                    <option value="school">Schooling</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div id="date-div">
+                <label for="date">Due Date</label><br>
+                <input type="date" id="date" name="date" placeholder="dd/mm/yyyy" required>
+            </div>
+
+        </div>
+        <div id="lower-most">
+            <button type="submit" id="add">ADD TASK</button>
+        </div>
+    </form>
+    <form method="post" action="/delete-task">
+        <div id="delete-div">
+        <button type="submit" id="delete">DELETE TASKS</button><br>
+        </div>
+        <ul>
+            <% for(let i of todo_list){%>
+                <li>
+                    
+                    <div id="task-div">
+                        <div id="check">
+                            <input type="checkbox" id="<%= i._id %>" name="task" value="<%= i._id %>">
+                        </div>
+                        <div id="date-desc">
+                            <h3><%= i.desc %></h3>
+                            <h4><%= i.date %></h4>
+                        </div>
+                        <div id="task-type">
+                            <h3><%= i.categ %></h3>
+                        </div>
+                    </div>
+
+                </li>
+            <%} %>
+        </ul>
+    </form>
+</body>
+
+</html>
